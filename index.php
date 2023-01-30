@@ -40,14 +40,14 @@
 
     ];
 
-    echo "<pre>";
-        foreach($hotels as $key => $item){
-            echo $key ."</br>";
-            foreach($item as $key_two => $value){
-                echo $key_two ." => " .$value ."</br>";
-            }
-        }
-    echo "</pre>";
+    // echo "<pre>";
+    //     foreach($hotels as $key => $item){
+    //         echo $key ."</br>";
+    //         foreach($item as $key_two => $value){
+    //             echo $key_two ." => " .$value ."</br>";
+    //         }
+    //     }
+    // echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -61,34 +61,37 @@
     <title>PHP Hotel</title>
 </head>
     <body>
-        <table class="mt-3">
-            <thead>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Parking</th>
-                <th>Vote</th>
-                <th>Distance to center</th>
-            </thead>
-            <tbody>
-                <!-- faccio il ciclo foreach -->
-                <?php foreach($hotels as $value){ ?>
-                    <tr>
-                        <!-- richiamo con echo ogni valore che voglio stampare -->
-                        <td><?php echo $value['name']; ?></td>
-                        <td><?php echo $value['description']; ?></td>
-                        <!-- faccio un if per stampare si o no su un valore booleano -->
-                        <td>
-                            <?php if($value['parking']){
-                                echo 'Sì';
-                            } else{
-                                echo 'No';
-                            }; ?>
-                        </td>
-                        <td><?php echo $value['vote']; ?></td>
-                        <td><?php echo $value['distance_to_center']; ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+        <h1 class="text-center">HOTEL'S</h1>
+        <div class="d-flex justify-content-center mt-2">
+            <table class="mt-3 text-center">
+                <thead>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Parking</th>
+                    <th>Vote</th>
+                    <th>Distance to center</th>
+                </thead>
+                <tbody>
+                    <!-- faccio il ciclo foreach -->
+                    <?php foreach($hotels as $value){ ?>
+                        <tr>
+                            <!-- richiamo con echo ogni valore che voglio stampare -->
+                            <td><?php echo $value['name']; ?></td>
+                            <td><?php echo $value['description']; ?></td>
+                            <!-- faccio un if per stampare si o no su un valore booleano -->
+                            <td>
+                                <?php if($value['parking']){
+                                    echo 'Sì';
+                                } else{
+                                    echo 'No';
+                                }; ?>
+                            </td>
+                            <td><?php echo $value['vote']; ?></td>
+                            <td><?php echo $value['distance_to_center']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

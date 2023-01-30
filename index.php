@@ -40,6 +40,14 @@
 
     ];
 
+    echo "<pre>";
+        foreach($hotels as $key => $item){
+            echo $key ."</br>";
+            foreach($item as $key_two => $value){
+                echo $key_two ." => " .$value ."</br>";
+            }
+        }
+    echo "</pre>";
 ?>
 
 <!DOCTYPE html>

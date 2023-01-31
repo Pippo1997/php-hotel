@@ -48,6 +48,22 @@
     //         }
     //     }
     // echo "</pre>";
+
+    //FORM
+
+    $filtredHotels = $hotels;
+
+    if(isset($_GET['vote']) && $_GET['vote'] !== ''){
+
+        $tempHotels = [];
+        foreach($hotels as $hotel){
+            if($hotel['vote'] >= $_GET['vote']){
+                $tempHotels [] = $hotel;
+            }
+        }
+
+        $filtredHotels = $tempHotels;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +78,27 @@
 </head>
     <body>
         <h1 class="text-center">HOTEL'S</h1>
+        <div class="row ">
+            <div class="col-12 d-flex justify-content-center mt-2">
+                <form action="./index.php" method="GET" class="row my-3">
+                    <div class="col-sm-4">
+                        VOTE
+                        <input type="number" class="form-control" name="vote" placeholder="vote">
+                    </div>
+                    <div class="col-sm-4">
+                        PARKING
+                        <select class="form-control">
+                            <option value="">NO</option>
+                            <option value="1">YES</option>
+                        </select>
+                    </div>
+                    <div class="col-auto ">
+                        <button class="btn btn-sm btn-primary" type="submit">Filter</button>
+                        <button class="btn btn-sm btn-secondary" type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="d-flex justify-content-center mt-2">
             <table class="mt-3 text-center">
                 <thead>
@@ -73,7 +110,7 @@
                 </thead>
                 <tbody>
                     <!-- faccio il ciclo foreach -->
-                    <?php foreach($hotels as $value){ ?>
+                    <?php foreach($filtredHotels as $value){ ?>
                         <tr>
                             <!-- richiamo con echo ogni valore che voglio stampare -->
                             <td><?php echo $value['name']; ?></td>
@@ -81,7 +118,7 @@
                             <!-- faccio un if per stampare si o no su un valore booleano -->
                             <td>
                                 <?php if($value['parking']){
-                                    echo 'Sì';
+                                    echo 'Yes';
                                 } else{
                                     echo 'No';
                                 }; ?>

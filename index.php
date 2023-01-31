@@ -1,44 +1,8 @@
 <?php
 
-    $hotels = [
+    include 'hotel.php';
 
-        [
-            'name' => 'Hotel Belvedere',
-            'description' => 'Hotel Belvedere Descrizione',
-            'parking' => true,
-            'vote' => 4,
-            'distance_to_center' => 10.4
-        ],
-        [
-            'name' => 'Hotel Futuro',
-            'description' => 'Hotel Futuro Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 2
-        ],
-        [
-            'name' => 'Hotel Rivamare',
-            'description' => 'Hotel Rivamare Descrizione',
-            'parking' => false,
-            'vote' => 1,
-            'distance_to_center' => 1
-        ],
-        [
-            'name' => 'Hotel Bellavista',
-            'description' => 'Hotel Bellavista Descrizione',
-            'parking' => false,
-            'vote' => 5,
-            'distance_to_center' => 5.5
-        ],
-        [
-            'name' => 'Hotel Milano',
-            'description' => 'Hotel Milano Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 50
-        ],
-
-    ];
+    ///////// foreach per visuakzzare tutto l'array
 
     // echo "<pre>";
     //     foreach($hotels as $key => $item){
@@ -49,7 +13,7 @@
     //     }
     // echo "</pre>";
 
-    //FORM
+    ////////// Form
 
     $filtredHotels = $hotels;
 
@@ -58,6 +22,18 @@
         $tempHotels = [];
         foreach($hotels as $hotel){
             if($hotel['vote'] >= $_GET['vote']){
+                $tempHotels [] = $hotel;
+            }
+        }
+
+        $filtredHotels = $tempHotels;
+    }
+
+    if(isset($_GET['parking']) && $_GET['parking'] !== ''){
+
+        $tempHotels = [];
+        foreach($hotels as $hotel){
+            if($filtredHotels['parking'] >= $_GET['parking']){
                 $tempHotels [] = $hotel;
             }
         }
@@ -82,17 +58,16 @@
             <div class="col-12 d-flex justify-content-center mt-2">
                 <form action="./index.php" method="GET" class="row my-3">
                     <div class="col-sm-4">
-                        VOTE
-                        <input type="number" class="form-control" name="vote" placeholder="vote">
+                        <input type="number" class="form-control" name="vote" placeholder="vote" <?php echo isset($_GET['vote']) ? $_GET['vote'] : '' ?>>
                     </div>
                     <div class="col-sm-4">
-                        PARKING
-                        <select class="form-control">
-                            <option value="">NO</option>
-                            <option value="1">YES</option>
+                        <select class="form-control" name="parking">
+                            <option value="">Parking</option>
+                            <option value="0" <?php echo (isset($_GET['parking']) && $_GET['parking'] == 0) ? 'selected' : '' ?>>NO</option>
+                            <option value="1" <?php echo (isset($_GET['parking']) && $_GET['parking'] == 1) ? 'selected' : '' ?>>YES</option>
                         </select>
                     </div>
-                    <div class="col-auto ">
+                    <div class="col-auto">
                         <button class="btn btn-sm btn-primary" type="submit">Filter</button>
                         <button class="btn btn-sm btn-secondary" type="reset">Reset</button>
                     </div>

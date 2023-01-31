@@ -32,8 +32,8 @@
     if(isset($_GET['parking']) && $_GET['parking'] !== ''){
 
         $tempHotels = [];
-        foreach($hotels as $hotel){
-            if($filtredHotels['parking'] >= $_GET['parking']){
+        foreach($filtredHotels as $hotel){
+            if($hotel['parking'] == $_GET['parking']){
                 $tempHotels [] = $hotel;
             }
         }
